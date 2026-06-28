@@ -7,20 +7,27 @@ export default function AboutSection() {
           <div className="relative">
             <div className="absolute -top-20 -left-20 w-64 h-64 bg-mate-500/10 rounded-full blur-[80px]" />
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight relative">
-              Built for the
+              Local-first.
               <br />
-              <span className="text-gradient">next generation</span>
+              <span className="text-gradient">Privacy-first.</span>
             </h2>
             <p className="mt-6 text-white/50 text-lg leading-relaxed">
-              Mate started as a vision to make powerful AI accessible to everyone.
-              Today, it&apos;s a thriving open-source ecosystem driven by a global
-              community of developers, creators, and innovators.
+              Mate is a floating AI secretary for Windows — fully local with
+              Ollama. No API keys, no subscriptions, no cloud, no telemetry.
+              Free forever.
+            </p>
+            <p className="mt-4 text-white/40 text-base leading-relaxed">
+              Your conversations stay on your machine in a local SQLite database.
+              Once your model is pulled, Mate runs completely offline. Optionally
+              connect OpenRouter if you need cloud models — you stay in control
+              of what leaves your device.
             </p>
             <div className="mt-8 space-y-4">
               {[
-                { label: "Founded", value: "2024" },
-                { label: "Open Source", value: "MIT License" },
-                { label: "Built With", value: "TypeScript, Rust, Python" },
+                { label: "Platform", value: "Windows 10 / 11" },
+                { label: "Engine", value: "Ollama (Local)" },
+                { label: "License", value: "Apache 2.0" },
+                { label: "Status", value: "In Development" },
               ].map((item) => (
                 <div key={item.label} className="flex items-center gap-4">
                   <div className="w-2 h-2 rounded-full bg-mate-500" />
@@ -37,9 +44,9 @@ export default function AboutSection() {
               <div className="grid grid-cols-2 gap-6">
                 {[
                   { value: "50k+", label: "Lines of Code" },
-                  { value: "200+", label: "Contributors" },
-                  { value: "30+", label: "Integrations" },
-                  { value: "99.9%", label: "Uptime" },
+                  { value: "100%", label: "Local & Offline" },
+                  { value: "30+", label: "Slash Commands" },
+                  { value: "Beta", label: "Public Release" },
                 ].map((stat) => (
                   <div key={stat.label} className="text-center p-4 rounded-xl bg-white/[0.02] border border-white/5">
                     <div className="text-2xl font-bold text-gradient">{stat.value}</div>
