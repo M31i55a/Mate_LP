@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 export default function Footer() {
   const currentYear = new Date().getFullYear()
 
@@ -7,9 +9,13 @@ export default function Footer() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-7 h-7 rounded-lg bg-gradient-to-br from-mate-500 to-purple-500 flex items-center justify-center text-xs font-bold">
-                M
-              </div>
+              <Image
+                src="/images/thuki-logo.png"
+                alt="Mate logo"
+                width={28}
+                height={28}
+                className="rounded-lg"
+              />
               <span className="font-semibold">Mate 2.0</span>
             </div>
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">

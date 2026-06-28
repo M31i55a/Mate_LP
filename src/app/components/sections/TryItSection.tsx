@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import Image from "next/image"
 
 const examples = [
   "Explain quantum computing in simple terms",
@@ -78,9 +79,13 @@ export default function TryItSection() {
           {response && (
             <div className="mt-6 p-5 rounded-xl bg-white/[0.02] border border-white/5 animate-fade-in">
               <div className="flex items-center gap-2 mb-3">
-                <div className="w-6 h-6 rounded-md bg-gradient-to-br from-mate-500 to-purple-600 flex items-center justify-center text-[10px] font-bold">
-                  M
-                </div>
+                <Image
+                  src="/images/thuki-logo.png"
+                  alt="Mate"
+                  width={24}
+                  height={24}
+                  className="rounded-md"
+                />
                 <span className="text-sm font-medium">Mate</span>
               </div>
               <p className="text-white/70 text-sm leading-relaxed">{response}</p>

@@ -4,6 +4,9 @@ import "./globals.css"
 export const metadata: Metadata = {
   title: "Mate 2.0 — Your Intelligent Companion",
   description: "Mate 2.0 redefines how you interact with intelligent systems. Fast, open, and built for everyone.",
+  icons: {
+    icon: "/images/thuki-logo.png",
+  },
   openGraph: {
     title: "Mate 2.0",
     description: "Your Intelligent Companion",
