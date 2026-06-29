@@ -2,8 +2,10 @@
 
 import { useRef, useState, useEffect } from "react"
 import useScrollProgress from "../../lib/useScrollProgress"
+import { useT } from "../../context/LanguageContext"
 
 export default function AboutSection() {
+  const t = useT()
   const sectionRef = useRef<HTMLElement>(null)
   const progress = useScrollProgress(sectionRef)
   const [vw, setVw] = useState(1200)
@@ -53,32 +55,27 @@ export default function AboutSection() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="max-w-xl">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight relative">
-                Local-first.
+                {t.about.h1}
                 <br />
-                <span className="text-gradient">Privacy-first.</span>
+                <span className="text-gradient">{t.about.h2}</span>
               </h2>
               <p className="mt-6 text-white/50 text-lg leading-relaxed">
-                Mate is a floating AI secretary for Windows — fully local with
-                Ollama. No API keys, no subscriptions, no cloud, no telemetry.
-                Free forever.
+                {t.about.p1}
               </p>
               <p className="mt-4 text-white/40 text-base leading-relaxed">
-                Your conversations stay on your machine in a local SQLite database.
-                Once your model is pulled, Mate runs completely offline. Optionally
-                connect OpenRouter if you need cloud models — you stay in control
-                of what leaves your device.
+                {t.about.p2}
               </p>
               <div className="mt-8 space-y-4">
                 {[
-                  { label: "Platform", value: "Windows 10 / 11" },
-                  { label: "Engine", value: "Ollama (Local)" },
-                  { label: "License", value: "Apache 2.0" },
-                  { label: "Status", value: "In Development" },
+                  { labelKey: "platform" as const, valueKey: "platformVal" as const },
+                  { labelKey: "engine" as const, valueKey: "engineVal" as const },
+                  { labelKey: "license" as const, valueKey: "licenseVal" as const },
+                  { labelKey: "status" as const, valueKey: "statusVal" as const },
                 ].map((item) => (
-                  <div key={item.label} className="flex items-center gap-4">
+                  <div key={item.labelKey} className="flex items-center gap-4">
                     <div className="w-2 h-2 rounded-full bg-mate-500" />
-                    <span className="text-white/40 text-sm w-28">{item.label}</span>
-                    <span className="text-white/80 font-medium">{item.value}</span>
+                    <span className="text-white/40 text-sm w-28">{t.about[item.labelKey]}</span>
+                    <span className="text-white/80 font-medium">{t.about[item.valueKey]}</span>
                   </div>
                 ))}
               </div>

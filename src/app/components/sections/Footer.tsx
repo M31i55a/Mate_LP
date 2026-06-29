@@ -1,6 +1,10 @@
+"use client"
+
 import Image from "next/image"
+import { useT } from "../../context/LanguageContext"
 
 export default function Footer() {
+  const t = useT()
   const currentYear = new Date().getFullYear()
 
   return (
@@ -19,14 +23,14 @@ export default function Footer() {
               <span className="font-semibold">Mate 2.0</span>
             </div>
             <p className="text-sm text-white/40 leading-relaxed max-w-xs">
-              Your intelligent companion. Open source, privacy-first, and built for the future.
+              {t.footer.desc}
             </p>
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold mb-4">Product</h4>
+            <h4 className="text-sm font-semibold mb-4">{t.footer.product}</h4>
             <ul className="space-y-2">
-              {["Features", "API", "Pricing", "Changelog"].map((item) => (
+              {t.footer.productLinks.map((item) => (
                 <li key={item}>
                   <a href="#" className="text-sm text-white/40 hover:text-mate-400 transition-colors">{item}</a>
                 </li>
@@ -35,9 +39,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold mb-4">Community</h4>
+            <h4 className="text-sm font-semibold mb-4">{t.footer.community}</h4>
             <ul className="space-y-2">
-              {["GitHub", "Discord", "Twitter", "npm"].map((item) => (
+              {t.footer.communityLinks.map((item) => (
                 <li key={item}>
                   <a href="#" className="text-sm text-white/40 hover:text-mate-400 transition-colors">{item}</a>
                 </li>
@@ -46,9 +50,9 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-sm font-semibold mb-4">Legal</h4>
+            <h4 className="text-sm font-semibold mb-4">{t.footer.legal}</h4>
             <ul className="space-y-2">
-              {["Privacy Policy", "Terms of Service", "License"].map((item) => (
+              {t.footer.legalLinks.map((item) => (
                 <li key={item}>
                   <a href="#" className="text-sm text-white/40 hover:text-mate-400 transition-colors">{item}</a>
                 </li>
@@ -58,8 +62,8 @@ export default function Footer() {
         </div>
 
         <div className="mt-10 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-white/30">&copy; {currentYear} Mate. All rights reserved.</p>
-          <p className="text-xs text-white/20">Built with care by the Mate Team</p>
+          <p className="text-xs text-white/30">&copy; {currentYear} {t.footer.copyright.replace("2026", String(currentYear)).replace("2026", String(currentYear))}</p>
+          <p className="text-xs text-white/20">{t.footer.builtBy}</p>
         </div>
       </div>
     </footer>

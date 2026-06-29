@@ -3,62 +3,11 @@
 import { useRef, useState, useEffect } from "react"
 import useScrollProgress from "../../lib/useScrollProgress"
 import { cn } from "../../lib/utils"
+import { useT } from "../../context/LanguageContext"
 import GridBackground from "../GridBackground"
 
-const features = [
-  {
-    cmd: "Ctrl+Space",
-    title: "Quick Explain",
-    desc: "Select any text anywhere and press Ctrl+Space — Mate instantly explains your selection without any extra typing.",
-  },
-  {
-    cmd: "Ctrl+Shift",
-    title: "Inline Edit",
-    desc: "Select text in any app, press Ctrl+Shift and hold 700ms — Mate opens in inline-edit mode with your selection ready for AI rewriting, translation, or transformation.",
-  },
-  {
-    cmd: "/do",
-    title: "Agent Mode",
-    desc: "Let Mate autonomously control your desktop — launch apps, type text, press key combos, and complete multi-step tasks with both vision and text-only models.",
-  },
-  {
-    cmd: "/screen",
-    title: "Screen & Region Capture",
-    desc: "Capture your entire screen or drag-select any region as image context. Add text after the command and it's injected into your input for review before submitting.",
-  },
-  {
-    cmd: "/search",
-    title: "Agentic Search",
-    desc: "Run a fully local, multi-step search pipeline with SearXNG and Trafilatura — live trace of every query, fetch, and judgement step.",
-  },
-  {
-    cmd: "/file",
-    title: "File Attachments",
-    desc: "Type /file to open a native file picker — Mate reads text files (.txt, .md, .json, .ts, .py, .rs, etc.) and sends their full contents to the model as context.",
-  },
-  {
-    cmd: "/think",
-    title: "Extended Reasoning",
-    desc: "Type /think to have the model reason through a problem step by step before answering — perfect for complex logic, math, and analysis.",
-  },
-  {
-    cmd: "/read",
-    title: "Voice Output (TTS)",
-    desc: "Click the speaker icon on any message or type /read to have it read aloud using Microsoft Edge Neural TTS — supports 32 languages with auto-detection.",
-  },
-  {
-    cmd: "Ctrl+K",
-    title: "Clear Session",
-    desc: "Press Ctrl+K while Mate is open to instantly clear the chat, attached images, and query — start a fresh conversation without reopening the window.",
-  },
-  {
-    cmd: "Ctrl+P",
-    title: "Prompt Favorites",
-    desc: "Press Ctrl+P or type /favorites to open your saved prompt panel — pin frequently used prompts for instant reuse without retyping.",
-  },
-]
-
 export default function DemoSection() {
+  const t = useT()
   const sectionRef = useRef<HTMLElement>(null)
   const progress = useScrollProgress(sectionRef)
   const [vw, setVw] = useState(1200)
@@ -77,7 +26,7 @@ export default function DemoSection() {
   const demoReveal = smoothstep(progress, 0.62, 0.76)
   const textProgress = smoothstep(progress, 0.76, 1.00)
 
-  const featureIndex = Math.min(Math.floor(textProgress * features.length), features.length - 1)
+  const featureIndex = Math.min(Math.floor(textProgress * t.demo.items.length), t.demo.items.length - 1)
   const splitX = splitDone * 180
 
   const fullGrowX = Math.max(rectGrowX1, rectGrowX2)
@@ -178,8 +127,8 @@ export default function DemoSection() {
                   {/* Vertical timeline */}
                   <div className="relative flex flex-col items-center shrink-0 pt-1">
                     <div className="w-0.5 bg-[#0a0a0f]/10 rounded-full flex-1 min-h-[200px]" />
-                    {features.map((_, i) => {
-                      const dotPos = features.length > 1 ? i / (features.length - 1) : 0.5
+                    {t.demo.items.map((_, i) => {
+                      const dotPos = t.demo.items.length > 1 ? i / (t.demo.items.length - 1) : 0.5
                       return (
                         <div
                           key={i}
@@ -206,24 +155,24 @@ export default function DemoSection() {
 
                   {/* Feature content */}
                   <div className="flex-1 space-y-5 min-w-0">
-                    <p className="text-xs uppercase tracking-widest text-[#0a0a0f]/40">Features</p>
+                    <p className="text-xs uppercase tracking-widest text-[#0a0a0f]/40">{t.demo.features}</p>
 
                     {/* Command badge */}
                     <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#0a0a0f]/5 border border-[#0a0a0f]/10 font-mono text-sm text-[#0a0a0f]/70">
-                      <kbd className="text-mate-600 font-semibold">{features[featureIndex].cmd}</kbd>
+                      <kbd className="text-mate-600 font-semibold">{t.demo.items[featureIndex].cmd}</kbd>
                     </div>
 
                     <h3 className="text-2xl sm:text-3xl font-bold text-[#0a0a0f] leading-tight">
-                      {features[featureIndex].title}
+                      {t.demo.items[featureIndex].title}
                     </h3>
 
                     <p className="text-[#0a0a0f]/60 leading-relaxed text-sm sm:text-base">
-                      {features[featureIndex].desc}
+                      {t.demo.items[featureIndex].desc}
                     </p>
 
                     {/* Feature counter */}
                     <p className="text-xs text-[#0a0a0f]/30 font-mono">
-                      {String(featureIndex + 1).padStart(2, "0")} / {String(features.length).padStart(2, "0")}
+                      {String(featureIndex + 1).padStart(2, "0")} / {String(t.demo.items.length).padStart(2, "0")}
                     </p>
                   </div>
                 </div>

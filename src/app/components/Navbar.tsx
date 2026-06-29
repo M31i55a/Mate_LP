@@ -3,18 +3,21 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { cn } from "../lib/utils"
+import { useT, useLang } from "../context/LanguageContext"
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Features", href: "#features" },
-  { label: "Demo", href: "#demo" },
-  { label: "Community", href: "#community" },
-  { label: "Contact", href: "#contact" },
-  { label: "Try It", href: "/try-it" },
+  { labelKey: "home", href: "#home" },
+  { labelKey: "about", href: "#about" },
+  { labelKey: "features", href: "#features" },
+  { labelKey: "demo", href: "#demo" },
+  { labelKey: "community", href: "#community" },
+  { labelKey: "contact", href: "#contact" },
+  { labelKey: "tryIt", href: "/try-it" },
 ]
 
 export default function Navbar() {
+  const t = useT()
+  const { toggleLang, lang } = useLang()
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
 
@@ -55,14 +58,20 @@ export default function Navbar() {
                 href={item.href}
                 className="px-4 py-2 text-sm text-white/70 hover:text-white rounded-lg hover:bg-white/5 transition-all"
               >
-                {item.label}
+                {t.navbar[item.labelKey as keyof typeof t.navbar]}
               </a>
             ))}
+            <button
+              onClick={toggleLang}
+              className="px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all uppercase tracking-wider"
+            >
+              {lang === "en" ? "FR" : "EN"}
+            </button>
             <a
               href="/try-it"
-              className="ml-4 px-5 py-2 text-sm font-medium rounded-xl bg-gradient-to-r from-mate-500 to-purple-600 hover:from-mate-400 hover:to-purple-500 text-white transition-all shadow-lg shadow-mate-500/25"
+              className="ml-2 px-5 py-2 text-sm font-medium rounded-xl bg-gradient-to-r from-mate-500 to-purple-600 hover:from-mate-400 hover:to-purple-500 text-white transition-all shadow-lg shadow-mate-500/25"
             >
-              Get Started
+              {t.navbar.getStarted}
             </a>
           </div>
 
@@ -92,16 +101,24 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="block px-4 py-3 text-sm text-white/70 hover:text-white rounded-lg hover:bg-white/5 transition-all"
               >
-                {item.label}
+                {t.navbar[item.labelKey as keyof typeof t.navbar]}
               </a>
             ))}
-            <a
-              href="/try-it"
-              onClick={() => setMobileOpen(false)}
-              className="block px-4 py-3 text-center text-sm font-medium rounded-xl bg-gradient-to-r from-mate-500 to-purple-600 text-white mt-3"
-            >
-              Get Started
-            </a>
+            <div className="flex items-center gap-2 px-4 pt-2">
+              <button
+                onClick={() => { toggleLang(); setMobileOpen(false) }}
+                className="px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all uppercase tracking-wider"
+              >
+                {lang === "en" ? "FR" : "EN"}
+              </button>
+              <a
+                href="/try-it"
+                onClick={() => setMobileOpen(false)}
+                className="flex-1 block px-4 py-3 text-center text-sm font-medium rounded-xl bg-gradient-to-r from-mate-500 to-purple-600 text-white"
+              >
+                {t.navbar.getStarted}
+              </a>
+            </div>
           </div>
         </div>
       )}

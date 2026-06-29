@@ -1,6 +1,10 @@
+"use client"
+
+import { useT } from "../../context/LanguageContext"
 import DotBackground from "../DotBackground"
 
 export default function HeroSection() {
+  const t = useT()
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       <DotBackground />
@@ -9,18 +13,17 @@ export default function HeroSection() {
 
       <div className="relative z-10 max-w-5xl mx-auto section-padding text-center">
         <div className="text-sm text-mate-300 mb-8 animate-fade-in">
-          Now in Beta — v2.0
+          {t.hero.beta}
         </div>
 
         <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.9] animate-slide-up">
-          Your Intelligent
+          {t.hero.title1}
           <br />
-          <span className="text-gradient">Companion</span>
+          <span className="text-gradient">{t.hero.title2}</span>
         </h1>
 
         <p className="mt-6 text-lg sm:text-xl text-white/50 max-w-2xl mx-auto leading-relaxed animate-fade-in">
-          Mate 2.0 redefines how you interact with intelligent systems.
-          Fast, open, and built for everyone — from developers to creators.
+          {t.hero.subtitle}
         </p>
 
         <div className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-slide-up">
@@ -28,30 +31,30 @@ export default function HeroSection() {
             href="/try-it"
             className="px-8 py-3.5 rounded-xl bg-gradient-to-r from-mate-500 to-purple-600 hover:from-mate-400 hover:to-purple-500 text-white font-medium text-lg transition-all shadow-xl shadow-mate-500/30 hover:shadow-mate-500/50"
           >
-            Try Mate Now
+            {t.hero.tryNow}
           </a>
           <a
             href="#features"
             className="px-8 py-3.5 rounded-xl border border-white/10 hover:border-white/20 text-white/80 hover:text-white font-medium text-lg transition-all"
           >
-            Explore Features
+            {t.hero.explore}
           </a>
         </div>
 
         <div className="mt-16 flex items-center justify-center gap-8 sm:gap-12 text-white/30 animate-fade-in">
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-white">10x</div>
-            <div className="text-xs sm:text-sm mt-1">Faster Responses</div>
+            <div className="text-xs sm:text-sm mt-1">{t.hero.stat1}</div>
           </div>
           <div className="w-px h-12 bg-white/10" />
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-white">100%</div>
-            <div className="text-xs sm:text-sm mt-1">Open Source</div>
+            <div className="text-xs sm:text-sm mt-1">{t.hero.stat2}</div>
           </div>
           <div className="w-px h-12 bg-white/10" />
           <div className="text-center">
             <div className="text-2xl sm:text-3xl font-bold text-white">5k+</div>
-            <div className="text-xs sm:text-sm mt-1">Active Users</div>
+            <div className="text-xs sm:text-sm mt-1">{t.hero.stat3}</div>
           </div>
         </div>
       </div>
