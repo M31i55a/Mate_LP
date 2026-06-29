@@ -67,12 +67,6 @@ export default function Navbar() {
             >
               {lang === "en" ? "FR" : "EN"}
             </button>
-            <a
-              href="/try-it"
-              className="ml-2 px-5 py-2 text-sm font-medium rounded-xl bg-gradient-to-r from-mate-500 to-purple-600 hover:from-mate-400 hover:to-purple-500 text-white transition-all shadow-lg shadow-mate-500/25"
-            >
-              {t.navbar.getStarted}
-            </a>
           </div>
 
           <button
@@ -104,20 +98,13 @@ export default function Navbar() {
                 {t.navbar[item.labelKey as keyof typeof t.navbar]}
               </a>
             ))}
-            <div className="flex items-center gap-2 px-4 pt-2">
+            <div className="px-4 pt-2">
               <button
                 onClick={() => { toggleLang(); setMobileOpen(false) }}
-                className="px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all uppercase tracking-wider"
+                className="w-full px-3 py-1.5 text-xs font-medium rounded-lg border border-white/10 text-white/60 hover:text-white hover:border-white/30 transition-all uppercase tracking-wider"
               >
                 {lang === "en" ? "FR" : "EN"}
               </button>
-              <a
-                href="/try-it"
-                onClick={() => setMobileOpen(false)}
-                className="flex-1 block px-4 py-3 text-center text-sm font-medium rounded-xl bg-gradient-to-r from-mate-500 to-purple-600 text-white"
-              >
-                {t.navbar.getStarted}
-              </a>
             </div>
           </div>
         </div>
