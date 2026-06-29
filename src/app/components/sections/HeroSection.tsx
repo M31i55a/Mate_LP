@@ -34,10 +34,10 @@ export default function HeroSection() {
             {t.hero.tryNow}
           </a>
           <a
-            href="#features"
+            href="https://github.com/M31i55a/windowsMate-Thuki"
             className="px-8 py-3.5 rounded-xl border border-white/10 hover:border-white/20 text-white/80 hover:text-white font-medium text-lg transition-all"
           >
-            {t.hero.explore}
+            Source code
           </a>
         </div>
 
